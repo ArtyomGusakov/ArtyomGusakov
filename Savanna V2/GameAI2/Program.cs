@@ -24,14 +24,15 @@ namespace GameAI2
 
 		public static List<Predator> PredatorList = new List<Predator>
 		{
-			new Lion(0,0)
-			,new Lion (0,6)
+			new Lion(7,7)
+			
 		};
 
 		public static List<Herbivore> HerbivoreList = new List<Herbivore>
 		{
 		   new Antelope(10,10)
-		   ,new Antelope(10,17)
+		   ,new Antelope(8,17)
+			,new Antelope(12,12)
 		};
 
 		public static void Main()
@@ -83,6 +84,7 @@ namespace GameAI2
 					RenewField();
 					Console.WriteLine(PrintField());
 					System.Threading.Thread.Sleep(1000);
+					Console.Clear();
 				}//Main process ends
 
 			} while (Console.ReadKey(true).Key != ConsoleKey.Spacebar || Console.ReadKey(true).Key != ConsoleKey.L || Console.ReadKey(true).Key != ConsoleKey.A);
