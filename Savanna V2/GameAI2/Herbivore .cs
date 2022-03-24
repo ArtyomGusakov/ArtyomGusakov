@@ -8,19 +8,7 @@ namespace GameAI2
 {
 	public abstract class Herbivore : Animal
 	{
-		public char Visual = 'N';
-		public string AnimalRole = "Empty";
-		public int x = 0;
-		public int y = 0;
-		public int ViewDistance = 3;
-		public int Health = 100;
-		public int BirthTimer = 0;
-		public int BirthCooldown = 0;
-		public bool BirthProcess = false;
-		public bool BirthStarter = false;
-
-		
-		public int ThinkNextMove(GameField[,] GameFieldList2)//Antelope look around before taking next move
+		public void ThinkNextMove(GameField[,] GameFieldList2)//Antelope look around before taking next move
 		{
 			int i = 0;
 			int j = 0;
@@ -43,7 +31,7 @@ namespace GameAI2
 			char NearChar = 'N';
 
 			Health = Health - 5;
-			int PointlessReturn = 1;
+
 
 
 			for (i1 = x - ViewDistance; i1 <= x + ViewDistance; i1++)//Scan around for predator
@@ -85,7 +73,7 @@ namespace GameAI2
 			if (BirthTimer > 0 && BirthProcess == true)//Skip turn if true
 			{
 				BirthTimer = BirthTimer - 1;
-				return PointlessReturn;
+				return;
 			}
 
 			if (FoundPredator == true)
@@ -125,7 +113,7 @@ namespace GameAI2
 				}
 				x = x1;
 				y = y1;
-				return PointlessReturn;
+				return;
 			}
 
 			else//Random movement
@@ -150,7 +138,7 @@ namespace GameAI2
 										{
 											if (Program.BirthProcessStarter(x, y, i1, j1) == true)
 											{
-												return PointlessReturn;
+												return;
 											}
 										}
 									}
@@ -177,7 +165,7 @@ namespace GameAI2
 									{
 										x= i1;
 										y = j1;
-										return PointlessReturn;
+										return;
 									}
 								}
 							}
@@ -185,7 +173,6 @@ namespace GameAI2
 					}
 				}
 			}//Random movement ends
-			return PointlessReturn;
 		}
 	}
 }

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using System.Reflection;
+
+
 
 namespace GameAI2
 {
@@ -17,7 +17,6 @@ namespace GameAI2
 		public static int Timer = 0;
 		public static int LionCount = 0;
 		public static int AntelopeCount = 0;
-		public static int PluginFound = 0;
 
 		public enum UserInput { }//Unused
 
@@ -35,23 +34,9 @@ namespace GameAI2
 		   ,new Antelope(10,17)
 		};
 
-		static List <AnimalLibrary> GamePluginList = null;
-
-		public static void Main(string[] args)
+		public static void Main()
 		{
-			GamePluginList = ReadGamePlugins();
-
-			foreach (var GamePlugin in GamePluginList)
-			{
-				Console.WriteLine($"{GamePlugin.Visual} | {GamePlugin.AnimalRole}");
-			}
-			/*
-			foreach (var GamePlugin in GamePluginList)
-			{
-				GamePlugin.ThinkNextMove();
-			}
-			*/
-				GenerateField();
+			GenerateField();
 
 			//Console.WriteLine("pre while stage");
 			do//DO WHILE user press key
@@ -410,32 +395,5 @@ namespace GameAI2
 			}
 			return found;
 		}//AddAntelope ends
-
-		static List<AnimalLibrary> ReadGamePlugins()//bs
-		{
-			var PluginFiles = Directory.GetFiles("DLC", "*.dll");//Read files with .dll
-			var PluginList = new List<AnimalLibrary>();
-
-			foreach (var File in PluginFiles)
-			{
-				var CurrentAssembly = Assembly.LoadFile(Path.Combine(Directory.GetCurrentDirectory(), File));
-				//explain here
-
-				var PluginTypes = CurrentAssembly.GetTypes().Where(t => typeof(AnimalLibrary).IsAssignableFrom(t) && !t.IsInterface).ToArray();
-				//explain here
-
-				foreach (var PluginType in PluginTypes)
-				{
-					var PluginInstance = Activator.CreateInstance(PluginType) as AnimalLibrary;
-					//Explain here
-					PluginList.Add(PluginInstance);
-
-				}
-
-			}
-			return PluginList;
-		}//ReadPlugins end
-
-
 	}
 }

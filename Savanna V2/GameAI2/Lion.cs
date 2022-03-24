@@ -17,6 +17,6 @@ namespace GameAI2
 		ViewDistance = 3;
 		Health = 100;
 		
-	    }
+	}
 	}
 }

@@ -8,17 +8,6 @@ namespace GameAI2
 {
 	public abstract class Predator:Animal
 	{
-		public char Visual = 'N';
-		public string AnimalRole = "Empty";
-		public int x = 0;
-		public int y = 0;
-		public int ViewDistance = 3;
-		public int Health = 100;
-		public int BirthTimer = 0;
-		public int BirthCooldown = 0;
-		public bool BirthProcess = false;
-		public bool BirthStarter = false;
-
 		public int ThinkNextMove(GameField[,] GameFieldList2)//Predator look around before taking next move
 		{
 			//PlayField[2, 2].GameFieldVisual();
@@ -44,12 +33,9 @@ namespace GameAI2
 			bool ExtraOne = false;
 			char OwnChar = 'N';
 			char NearChar = 'N';
+			
 
-
-
-
-
-		int Answer = 0;
+			int Answer = 0;
 			//0 - Default
 			//1 - Found prey at range 1
 			//2 - Found prey at range 1,5
@@ -78,7 +64,7 @@ namespace GameAI2
 			}
 				//Console.WriteLine("Predator started to think next move...");
 
-			for (i1 = x - ViewDistance; i1 <= x + ViewDistance; i1++)//Scan around for prey
+				for (i1 = x - ViewDistance; i1 <= x + ViewDistance; i1++)//Scan around for prey
 			{
 				if (i1 >= 0 && i1 < Program.FieldSize1) //Horisontal check
 				{
